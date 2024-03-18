@@ -1,11 +1,13 @@
-import "./App.css";
-import Header from "./components/header";
+import "../src/styles/global.css";
+import Header from "./components/Header";
+import Menu from "./pages/Menu";
 
 function App() {
   return (
-    <div>
+    <>
       <Header />
-    </div>
+      <Menu />
+    </>
   );
 }
 
