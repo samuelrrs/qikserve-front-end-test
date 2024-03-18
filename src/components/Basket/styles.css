@@ -1,0 +1,22 @@
+.basket {
+    width: 320px;
+    height: 129px;
+    background-color: #ffffff;
+    box-shadow: 2px 0px 14px 0px #00000024;
+    padding: 22px 24px;
+    display: flex;
+    flex-direction: column;
+}
+
+.basket__cart-txt {
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 28.13px;
+    letter-spacing: 0.5px;
+}
+.basket__cart-empty-txt {
+    font-size: 16px;
+    line-height: 18.75px;
+    font-weight: 400;
+    margin-top: 36px;
+}
