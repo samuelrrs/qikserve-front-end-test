@@ -1,0 +1,35 @@
+.header {
+    /*   position: fixed;
+    top: 0;
+    left: 0; */
+    /* display: flex;*/
+
+    display: flex;
+    color: #fff;
+    width: 100%;
+    align-items: center;
+    flex-direction: column;
+}
+
+.header__tabs {
+    display: flex;
+    height: 52px;
+    background-color: #4f372f;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.header__txts {
+    color: #ffffff;
+    font-size: 20px;
+    width: 232px;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+.header__img {
+    width: 100%;
+}
