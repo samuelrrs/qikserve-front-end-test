@@ -1,0 +1,45 @@
+.menu {
+    max-width: 1024px;
+    /*  margin-top: 210px; */
+}
+input {
+    width: 1024px;
+    height: 44px;
+    border-radius: 8px;
+    padding: 0 16px;
+    background: #fff;
+    border: 1px solid #a8a8b3;
+    margin-top: 11px;
+}
+
+.menu__container {
+    display: flex;
+    width: 1024px;
+    height: 1337px;
+    background-color: #f8f9fa;
+
+    margin-top: 6px;
+    padding: 32px 40px;
+    gap: 24px;
+}
+.menu__sub_container {
+    background-color: #ffffff;
+    height: 20px;
+    width: 600px;
+    box-shadow: 2px 0px 14px 0px #00000024;
+}
+/* .menu__cart {
+    width: 320px;
+    height: 129px;
+    background-color: #ffffff;
+    box-shadow: 2px 0px 14px 0px #00000024;
+    padding: 22px 24px;
+}
+
+.menu_cart-txt {
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 28.13px;
+    letter-spacing: 0.5px;
+}
+ */
