@@ -5,6 +5,8 @@ import MenuList from "../../components/MenuList";
 
 import Modal from "../../components/ModalItem/index.tsx";
 import "./styles.css";
+import Carousel from "../../components/Carousel/index.tsx";
+import SearchInput from "../../components/SearchInput/index.tsx";
 
 interface MenuItem {
   id: number;
@@ -55,60 +57,52 @@ const Menu = () => {
   const handleSelectItem = (item: MenuItem) => {
     setSelectedItem(item);
     setPopUp(true);
-    console.log(selectedItem);
   };
 
   return (
     <div className="menu">
       <div className="menu__itens">
-        <input
-          type="text"
-          placeholder="Search menu items"
-          className="menu__input"
-        />
+        <SearchInput />
+
         <div className="menu__container">
           <div className="menu__sections">
+            <Carousel sections={dataMenu} />
             {dataMenu?.sections.map((section) => (
-              <div key={section.id}>
-                <div className="menu_list-item">
-                  <div
-                    className={`menu_list__section-label ${
-                      activeSectionId?.includes(section.id) ? "active" : ""
+              <div className="menu_list-item" key={section.id}>
+                <div
+                  className={`menu_list__section-label ${
+                    activeSectionId?.includes(section.id) ? "active" : ""
+                  }`}
+                  onClick={() => handleCollapseMenu(section.id)}
+                >
+                  <span className="menu_list__section-txt">{section.name}</span>
+                  <img
+                    src={images.arrow}
+                    alt="Icon Arrow"
+                    className={`menu_list__section-icon ${
+                      activeSectionId?.includes(section.id)
+                        ? "rotate-normal"
+                        : "rotate-reverse"
                     }`}
-                    onClick={() => handleCollapseMenu(section.id)}
-                  >
-                    <span className="menu_list__section-txt">
-                      {section.name}
-                    </span>
-                    <img
-                      src={images.arrow}
-                      alt="Icon Arrow"
-                      className={`menu_list__section-icon ${
-                        activeSectionId?.includes(section.id)
-                          ? "rotate-normal"
-                          : "rotate-reverse"
-                      }`}
-                    />
-                  </div>
-
-                  {popUp && (
-                    <Modal setPopUp={setPopUp} modalContent={selectedItem} />
-                  )}
-
-                  <div>
-                    {section.items.map((item) => (
-                      <MenuList
-                        key={item.id}
-                        title={item.name}
-                        description={item.description}
-                        price={`$${item.price}`}
-                        imgSrc={item?.images?.[0]?.image}
-                        activeSection={activeSectionId?.includes(section.id)}
-                        catchItemAtive={() => handleSelectItem(item)}
-                      />
-                    ))}
-                  </div>
+                  />
                 </div>
+                {popUp && (
+                  <>
+                    OIOIOIOIOOI
+                    <Modal setPopUp={setPopUp} modalContent={selectedItem} />
+                  </>
+                )}
+                {section.items.map((item) => (
+                  <MenuList
+                    key={item.id}
+                    title={item.name}
+                    description={item.description}
+                    price={`$${item.price}`}
+                    imgSrc={item?.images?.[0]?.image}
+                    activeSection={activeSectionId?.includes(section.id)}
+                    catchItemAtive={() => handleSelectItem(item)}
+                  />
+                ))}
               </div>
             ))}
           </div>
