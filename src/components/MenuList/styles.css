@@ -59,3 +59,14 @@
     border-radius: 6px;
     cursor: pointer;
 }
+
+@media (max-width: 700px) {
+    .menu_list__section-label {
+        padding: 0px;
+        margin: 25px 0px 16px 0px;
+    }
+    .menu_list__itens {
+        padding: 0px;
+        margin-bottom: 20px;
+    }
+}

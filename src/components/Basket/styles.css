@@ -20,3 +20,9 @@
     font-weight: 400;
     margin-top: 36px;
 }
+
+@media (max-width: 600px) {
+    .basket {
+        display: none;
+    }
+}
