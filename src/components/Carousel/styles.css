@@ -1,0 +1,45 @@
+.carousel {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    gap: 30px;
+}
+
+.carousel__img {
+    border-radius: 40px;
+    object-fit: cover;
+    border: 2px solid #ffffff;
+    width: 100%;
+    height: 100%;
+}
+.carousel__img-container {
+    border: 2px solid #4f372f;
+
+    width: 74px;
+    height: 74px;
+    border-radius: 40px;
+}
+
+.carousel__txt {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 18.75px;
+    letter-spacing: 0.5px;
+    color: #121212;
+}
+
+.carousel__ative {
+    border-bottom: 2px solid;
+    border-color: #4f372f;
+    border-radius: 2px;
+}
+
+.carousel__items {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    cursor: pointer;
+}
