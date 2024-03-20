@@ -1,8 +1,8 @@
 import "./styles.css";
 import images from "../../assets/icons/index.ts";
 
-const Modal = ({ modalContent, ...props }) => {
-  const { setPopUp } = props;
+const Modal = ({ modalContent, setPopUp }) => {
+  console.log(setPopUp);
 
   return (
     <div className="modal">
@@ -74,6 +74,13 @@ const Modal = ({ modalContent, ...props }) => {
                 <div className="modal__actions-quantity-increase-icon-2" />
               </div>
             </div>
+            <button className="modal__actions-add-btn">
+              <span className="modal__actions-add-btn-txt">
+                Adicionar ao pedido
+              </span>
+              <span className="modal__actions-add-btn-txt">•</span>
+              <span className="modal__actions-add-btn-txt"> R$32,32</span>
+            </button>
           </div>
         </div>
       </div>
