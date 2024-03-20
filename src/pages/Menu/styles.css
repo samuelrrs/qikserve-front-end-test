@@ -2,7 +2,7 @@
     max-width: 1024px;
     /*  margin-top: 210px; */
 }
-input {
+.menu__input {
     width: 1024px;
     height: 44px;
     border-radius: 8px;
@@ -10,6 +10,11 @@ input {
     background: #fff;
     border: 1px solid #a8a8b3;
     margin-top: 11px;
+}
+
+.menu_list-item {
+    background-color: #ffffff;
+    width: 600px;
 }
 
 .menu__container {
@@ -22,24 +27,30 @@ input {
     padding: 32px 40px;
     gap: 24px;
 }
+
+.menu_list__section-icon {
+    transition: transform 0.2s ease-in-out;
+}
+.rotate-normal {
+    transform: rotate(0deg);
+}
+
+.rotate-reverse {
+    transform: rotate(180deg);
+}
+
+.menu__itens_description {
+    display: flex;
+    flex-direction: column;
+}
 .menu__sub_container {
     background-color: #ffffff;
     height: 20px;
     width: 600px;
     box-shadow: 2px 0px 14px 0px #00000024;
 }
-/* .menu__cart {
-    width: 320px;
-    height: 129px;
-    background-color: #ffffff;
+.menu__sections {
+    display: flex;
+    flex-direction: column;
     box-shadow: 2px 0px 14px 0px #00000024;
-    padding: 22px 24px;
 }
-
-.menu_cart-txt {
-    font-size: 24px;
-    font-weight: 500;
-    line-height: 28.13px;
-    letter-spacing: 0.5px;
-}
- */
