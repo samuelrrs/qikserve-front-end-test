@@ -10,7 +10,7 @@ This project was developed using only pure CSS for styling all components, witho
 
 ## Technologies Used
 
-- **React:** Frontend framework for building user interfaces.
+- **React with TypeScript:** Frontend framework for building user interfaces.
 - **Redux/Redux Saga:** State management library for managing application state and fetch the datas.
 - **CSS:** Styling language used to design and style components.
 
@@ -31,10 +31,13 @@ This project was developed using only pure CSS for styling all components, witho
 
 ## Future Improvements
 
-- Implement server-side error handling more robustly, including retry logic and fallback mechanisms.
-- Enhance accessibility features such as keyboard navigation and screen reader compatibility.
-- Optimize performance by code splitting and lazy loading components.
-- Integrate automated testing for broader coverage and reliability.
+### Unit Testing
+
+- Implement unit tests for critical components and functionality using testing libraries like Jest and React Testing Library.
+
+### Internationalization
+
+- Introduce internationalization (i18n) for translating text and handling date formats across different languages and locales.
 
 ## Feedback and Support
 
