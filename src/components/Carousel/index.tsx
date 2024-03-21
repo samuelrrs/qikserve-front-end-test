@@ -4,14 +4,16 @@ interface Section {
   id: number;
   name: string;
   images?: { image: string }[];
+  activeSectionId: number;
 }
 
 interface Props {
   sections: Section[];
   handleCollapseMenu: (id: number) => void;
+  activeSectionId: number;
 }
 
-const Carousel = ({ sections, handleCollapseMenu }: Props) => {
+const Carousel = ({ sections, handleCollapseMenu, activeSectionId }: Props) => {
   return (
     <div className="carousel">
       {sections?.map((item) => (
@@ -29,7 +31,15 @@ const Carousel = ({ sections, handleCollapseMenu }: Props) => {
               />
             </div>
           </div>
-          <span className="carousel__txt carousel__ative">{item.name}</span>
+          <span
+            className={
+              activeSectionId
+                ? "carousel__txt carousel__ative"
+                : "carousel__txt"
+            }
+          >
+            {item.name}
+          </span>
         </div>
       ))}
     </div>
