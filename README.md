@@ -1,4 +1,4 @@
-# QikServ Frontend Test
+# QikServe Frontend Test
 
 ## Introduction
 
