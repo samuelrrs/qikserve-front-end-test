@@ -26,7 +26,8 @@ const Basket = ({
     0
   );
 
-  console.log(itensBasket);
+  console.log("itensBasket", itensBasket);
+
   return (
     <>
       <div
@@ -38,11 +39,11 @@ const Basket = ({
           {itensBasket.length ? (
             itensBasket.map((item) => (
               <div className="basket__itens-container" key={item.id}>
-                <div>
+                <div className="basket__itens-section">
                   <span className="basket__itens-name">{item.name}</span>
-                  {item.modifiers?.map((modifier, index) => (
-                    <span key={index}>{modifier}</span>
-                  ))}
+                  <span className="basket__itens-modifier-name">
+                    {item?.modiferName}
+                  </span>
                   <div className="basket__itens-quantity">
                     <span
                       className="basket__itens-quantity-btn"
