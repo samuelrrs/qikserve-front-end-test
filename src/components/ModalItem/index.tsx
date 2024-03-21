@@ -1,8 +1,40 @@
+import React, { useState } from "react";
 import "./styles.css";
-import images from "../../assets/icons/index.ts";
+import images from "../../assets/icons/index";
 
-const Modal = ({ modalContent, setPopUp }) => {
-  console.log(setPopUp);
+interface Item {
+  id: number;
+  name: string;
+  price: number;
+}
+
+interface Modifier {
+  id: number;
+  name: string;
+  price: number;
+  maxChoices: number;
+  items?: Item[];
+}
+
+interface ModalContent {
+  id: number;
+  name: string;
+  description: string;
+  images?: { image: string }[];
+  modifiers?: Modifier[];
+  price: number;
+}
+
+interface ModalProps {
+  modalContent: ModalContent;
+  setPopUp: (value: boolean) => void;
+  addToCart: (content: ModalContent, quantity: number) => void;
+  handleAddQuantity: (quantity: number) => void;
+  removeQuantity: (quantity: number) => void;
+}
+
+const Modal: React.FC<ModalProps> = ({ modalContent, setPopUp, addToCart }) => {
+  const [quantity, setQuantity] = useState<number>(1);
 
   return (
     <div className="modal">
@@ -22,7 +54,7 @@ const Modal = ({ modalContent, setPopUp }) => {
 
           <img
             className="modal__product-img"
-            src={modalContent?.images?.[0].image}
+            src={modalContent?.images?.[0]?.image}
             alt=""
           />
         </div>
@@ -65,21 +97,33 @@ const Modal = ({ modalContent, setPopUp }) => {
 
           <div className="modal__actions-btns">
             <div className="modal__actions-quantity">
-              <div className="modal__actions-quantity-decrease">
+              <div
+                className="modal__actions-quantity-decrease"
+                onClick={() => quantity > 1 && setQuantity(quantity - 1)}
+              >
                 <div className="modal__actions-quantity-decrease-icon" />
               </div>
-              <span className="modal__actions-quantity-value">1</span>
-              <div className="modal__actions-quantity-increase">
+              <span className="modal__actions-quantity-value">{quantity}</span>
+              <div
+                className="modal__actions-quantity-increase"
+                onClick={() => setQuantity(quantity + 1)}
+              >
                 <div className="modal__actions-quantity-increase-icon" />
                 <div className="modal__actions-quantity-increase-icon-2" />
               </div>
             </div>
-            <button className="modal__actions-add-btn">
+            <button
+              className="modal__actions-add-btn"
+              onClick={() => addToCart(modalContent, quantity)}
+            >
               <span className="modal__actions-add-btn-txt">
                 Adicionar ao pedido
               </span>
               <span className="modal__actions-add-btn-txt">•</span>
-              <span className="modal__actions-add-btn-txt"> R$32,32</span>
+              <span className="modal__actions-add-btn-txt">
+                {" "}
+                R${modalContent?.price * quantity}
+              </span>
             </button>
           </div>
         </div>
