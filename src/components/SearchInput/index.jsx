@@ -1,12 +1,7 @@
 import images from "../../assets/icons/index";
 import "./styles.css";
 
-interface SearchInputProps {
-  value: string;
-  onChange: (value: string) => void;
-}
-
-const SearchInput = ({ value, onChange }: SearchInputProps) => {
+const SearchInput = ({ value, onChange }) => {
   return (
     <div className="search_input">
       <img

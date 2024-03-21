@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import images from "../../assets/icons/index.ts";
-import Basket from "../../components/Basket";
-import MenuList from "../../components/MenuList";
+import Basket from "../../components/Basket/index.jsx";
+import MenuList from "../../components/MenuList/index.jsx";
 
 import { useDispatch, useSelector } from "react-redux";
-import BasketResponsive from "../../components/BasketResponsive/index.tsx";
-import Carousel from "../../components/Carousel/index.tsx";
-import Modal from "../../components/ModalItem/index.tsx";
-import SearchInput from "../../components/SearchInput/index.tsx";
+import BasketResponsive from "../../components/BasketResponsive/index.jsx";
+import Carousel from "../../components/Carousel/index.jsx";
+import Modal from "../../components/ModalItem/index.jsx";
+import SearchInput from "../../components/SearchInput/index.jsx";
 import {
   addQuantity,
   addToCart,
@@ -16,15 +16,6 @@ import {
 import { fetchMenuRequest } from "../../store/modules/menu/actions.js";
 import { fetchRestaurantsRequest } from "../../store/modules/restaurants/actions.js";
 import "./styles.css";
-
-interface MenuItem {
-  id: number;
-  title: string;
-  description: string;
-  price: string;
-  imgSrc: string;
-  sections: MenuItem[];
-}
 
 const Menu = () => {
   /*  const [dataMenu, setDataMenu] = useState<MenuItem | null>(null); */
@@ -36,7 +27,7 @@ const Menu = () => {
   }));
   const [popUp, setPopUp] = useState(false);
   const [showBasket, setShowBasket] = useState(false);
-  const [selectedItem, setSelectedItem] = useState<MenuItem | null>(null);
+  const [selectedItem, setSelectedItem] = useState();
   const [activeSectionId, setActiveSectionId] = useState(null);
   const [searchText, setSearchText] = useState("");
 
@@ -52,7 +43,7 @@ const Menu = () => {
     setActiveSectionId(activeSection);
   }, [sections]);
 
-  const handleCollapseMenu = (id: number) => {
+  const handleCollapseMenu = (id) => {
     setActiveSectionId((prevState) => {
       const isActive = prevState?.includes(id);
       return isActive
@@ -74,7 +65,7 @@ const Menu = () => {
 
   const filteredNames = filterItems(searchText);
 
-  const handleSelectItem = (item: MenuItem) => {
+  const handleSelectItem = (item) => {
     setSelectedItem(item);
     setPopUp(true);
   };

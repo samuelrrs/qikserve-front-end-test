@@ -1,25 +1,15 @@
 import { formatCurrency } from "../../utils/functions";
 import "./styles.css";
 
-interface MenuListProps {
-  title: string;
-  description: string;
-  price: number;
-  imgSrc?: string;
-  activeSection: boolean;
-  catchItemAtive: () => void;
-  modifier?: number;
-}
-
 const MenuList = ({
   title,
   description,
   price,
   imgSrc,
   activeSection,
-  modifier,
   catchItemAtive,
-}: MenuListProps) => {
+  modifier,
+}) => {
   return (
     activeSection && (
       <div className="menu_list" onClick={() => catchItemAtive()}>

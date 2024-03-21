@@ -1,55 +1,10 @@
-import React, { useState } from "react";
-import "./styles.css";
+import { useState } from "react";
 import images from "../../assets/icons/index";
 import { formatCurrency } from "../../utils/functions";
+import "./styles.css";
 
-interface Item {
-  id: number;
-  name: string;
-  price: number;
-}
-
-interface Modifier {
-  id: number;
-  name: string;
-  price: number;
-  maxChoices: number;
-  items?: Item[];
-}
-
-interface ModalContent {
-  id: number;
-  name: string;
-  description: string;
-  images?: { image: string }[];
-  modifiers?: Modifier[];
-  price: number;
-}
-
-interface Restaurant {
-  webSettings: {
-    bannerImage: string;
-    navBackgroundColour: string;
-    primaryColour: string;
-  };
-}
-
-interface ModalProps {
-  modalContent: ModalContent;
-  setPopUp: (value: boolean) => void;
-  addToCart: (content: ModalContent, quantity: number) => void;
-  handleAddQuantity: (quantity: number) => void;
-  removeQuantity: (quantity: number) => void;
-  restaurant: Restaurant;
-}
-
-const Modal: React.FC<ModalProps> = ({
-  modalContent,
-  setPopUp,
-  addToCart,
-  restaurant,
-}) => {
-  const [quantity, setQuantity] = useState<number>(1);
+const Modal = ({ modalContent, setPopUp, addToCart, restaurant }) => {
+  const [quantity, setQuantity] = useState(1);
   const defaultModifier = modalContent?.modifiers?.[0]?.items?.[0];
   const [selectedModifier, setSelectedModifier] = useState(defaultModifier);
 
@@ -162,7 +117,6 @@ const Modal: React.FC<ModalProps> = ({
               </span>
               <span className="modal__actions-add-btn-txt">•</span>
               <span className="modal__actions-add-btn-txt">
-                {" "}
                 {formatCurrency(
                   productModifier.price
                     ? productModifier.price * quantity

@@ -1,20 +1,7 @@
 import { useState } from "react";
 import "./styles.css";
 
-interface Section {
-  id: number;
-  name: string;
-  images?: { image: string }[];
-  activeSectionId: number;
-}
-
-interface Props {
-  sections: Section[];
-  handleCollapseMenu: (id: number) => void;
-  activeSectionId: number;
-}
-
-const Carousel = ({ sections, handleCollapseMenu }: Props) => {
+const Carousel = ({ sections, handleCollapseMenu }) => {
   const firstOption = sections[0]?.id;
   const [activeMenuId, setActiveMenuId] = useState(firstOption);
 

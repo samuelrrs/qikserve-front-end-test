@@ -3,37 +3,7 @@ import images from "../../assets/icons/index";
 import "./styles.css";
 import { formatCurrency } from "../../utils/functions";
 
-interface Item {
-  id: number;
-  name: string;
-  price: number;
-}
-
-interface Modifier {
-  id: number;
-  name: string;
-  price: number;
-  maxChoices: number;
-  items?: Item[];
-}
-
-interface ModalContent {
-  id: number;
-  name: string;
-  description: string;
-  images?: { image: string }[];
-  modifiers?: Modifier[];
-  price: number;
-}
-
-interface BasketResponsiveProps {
-  modalContent: ModalContent;
-  setShowBasket: (value: boolean) => void;
-  handleAddQuantity: (quantity: number) => void;
-  handleRemoveQuantity: (quantity: number) => void;
-}
-
-const BasketResponsive: React.FC<BasketResponsiveProps> = ({
+const BasketResponsive = ({
   modalContent,
   setShowBasket,
   handleAddQuantity,

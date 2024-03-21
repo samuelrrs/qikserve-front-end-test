@@ -1,26 +1,7 @@
 import "./styles.css";
 import { formatCurrency } from "../../utils/functions";
 
-interface Item {
-  id: number;
-  name: string;
-  modifiers?: string[];
-  quantity: number;
-  price: number;
-  totalPrice?: number;
-}
-
-interface BasketProps {
-  itensBasket: Item[];
-  handleAddQuantity: (item: Item) => void;
-  handleRemoveQuantity: (item: Item) => void;
-}
-
-const Basket = ({
-  itensBasket,
-  handleAddQuantity,
-  handleRemoveQuantity,
-}: BasketProps) => {
+const Basket = ({ itensBasket, handleAddQuantity, handleRemoveQuantity }) => {
   const totalPrice = itensBasket.reduce(
     (total, item) => total + (item.totalPrice ? item.totalPrice : item.price),
     0
