@@ -1,3 +1,4 @@
+import { formatCurrency } from "../../utils/functions";
 import "./styles.css";
 
 interface MenuListProps {
@@ -24,7 +25,10 @@ const MenuList = ({
           <div className="menu_list__itens-txts">
             <span className="menu_list__item-product-name">{title}</span>
             <span className="menu_list__item-description">{description}</span>
-            <span className="menu_list__item-price">{price}</span>
+            <span className="menu_list__item-price">
+              {" "}
+              {formatCurrency(price)}
+            </span>
           </div>
           {imgSrc && (
             <img
