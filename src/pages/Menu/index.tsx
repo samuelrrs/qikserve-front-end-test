@@ -3,18 +3,18 @@ import images from "../../assets/icons/index.ts";
 import Basket from "../../components/Basket";
 import MenuList from "../../components/MenuList";
 
-import Modal from "../../components/ModalItem/index.tsx";
-import "./styles.css";
-import Carousel from "../../components/Carousel/index.tsx";
-import SearchInput from "../../components/SearchInput/index.tsx";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchMenuRequest } from "../../store/modules/menu/actions.ts";
+import BasketResponsive from "../../components/BasketResponsive/index.tsx";
+import Carousel from "../../components/Carousel/index.tsx";
+import Modal from "../../components/ModalItem/index.tsx";
+import SearchInput from "../../components/SearchInput/index.tsx";
 import {
   addQuantity,
   addToCart,
-  removeFromCart,
   removeQuantity,
-} from "../../store/modules/cart/actions.ts";
+} from "../../store/modules/cart/actions.js";
+import { fetchMenuRequest } from "../../store/modules/menu/actions.js";
+import "./styles.css";
 
 interface MenuItem {
   id: number;
@@ -32,12 +32,14 @@ const Menu = () => {
     loading: state.menu.loading,
     cart: state?.cart?.items,
   }));
-  const [filteredArr, setSetFilteredArr] = useState([]);
   const [popUp, setPopUp] = useState(false);
+  const [showBasket, setShowBasket] = useState(false);
   const [selectedItem, setSelectedItem] = useState<MenuItem | null>(null);
-  const activeSection = sections.map((section) => section.id);
   const [activeSectionId, setActiveSectionId] = useState(null);
   const [searchText, setSearchText] = useState("");
+  const [catchActiveSection, setCatchActiveSection] = useState(0);
+  console.log("catchActiveSection", catchActiveSection);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -50,7 +52,6 @@ const Menu = () => {
   }, [sections]);
 
   const handleCollapseMenu = (id: number) => {
-    console.log("colapse", id);
     setActiveSectionId((prevState) => {
       const isActive = prevState?.includes(id);
       return isActive
@@ -81,17 +82,12 @@ const Menu = () => {
     return <div>Loading...</div>;
   }
 
-  const handleAddToCart = (item) => {
-    dispatch(addToCart(item));
-  };
-
-  const handleRemoveFromCart = (itemId) => {
-    dispatch(removeFromCart(itemId));
+  const handleAddToCart = (item, quantity) => {
+    dispatch(addToCart(item, quantity));
+    setPopUp(false);
   };
 
   const handleAddQuantity = (itemId) => {
-    console.log("add quantity", itemId.id);
-
     dispatch(addQuantity(itemId?.id));
   };
 
@@ -109,6 +105,8 @@ const Menu = () => {
             <Carousel
               sections={sections}
               handleCollapseMenu={handleCollapseMenu}
+              activeSectionId={activeSectionId}
+              setCatchActiveSection={setCatchActiveSection}
             />
             {filteredNames &&
               filteredNames.map((section) => (
@@ -132,6 +130,15 @@ const Menu = () => {
                       }`}
                     />
                   </div>
+                  {showBasket && (
+                    <BasketResponsive
+                      setShowBasket={setShowBasket}
+                      modalContent={cart}
+                      handleAddQuantity={handleAddQuantity}
+                      handleRemoveQuantity={handleRemoveQuantity}
+                    />
+                  )}
+
                   {popUp && (
                     <>
                       <Modal
@@ -148,7 +155,7 @@ const Menu = () => {
                       key={item.id}
                       title={item.name}
                       description={item.description}
-                      price={`$${item.price}`}
+                      price={item.price}
                       imgSrc={item?.images?.[0]?.image}
                       activeSection={activeSectionId?.includes(section.id)}
                       catchItemAtive={() => handleSelectItem(item)}
@@ -163,6 +170,25 @@ const Menu = () => {
             handleAddQuantity={handleAddQuantity}
             handleRemoveQuantity={handleRemoveQuantity}
           />
+
+          <span className="menu__allergy">View allergy information</span>
+          {cart.length > 0 && (
+            <div className="menu__basket-responsive__actions-btns">
+              <button
+                className="menu__basket-responsive__actions-add-btn"
+                onClick={() => setShowBasket(true)}
+              >
+                <span className="menu__basket-responsive__actions-add-btn-txt">
+                  Seu carrinho •
+                </span>
+                <span className="menu__basket-responsive__actions-add-btn-txt">
+                  {cart.length > 1
+                    ? `${cart.length} itens`
+                    : `${cart.length} item`}
+                </span>
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </div>
