@@ -26,12 +26,21 @@ interface ModalContent {
   price: number;
 }
 
+interface Restaurant {
+  webSettings: {
+    bannerImage: string;
+    navBackgroundColour: string;
+    primaryColour: string;
+  };
+}
+
 interface ModalProps {
   modalContent: ModalContent;
   setPopUp: (value: boolean) => void;
   addToCart: (content: ModalContent, quantity: number) => void;
   handleAddQuantity: (quantity: number) => void;
   removeQuantity: (quantity: number) => void;
+  restaurant: Restaurant;
 }
 
 const Modal: React.FC<ModalProps> = ({
