@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./styles.css";
 import images from "../../assets/icons/index";
+import { formatCurrency } from "../../utils/functions";
 
 interface Item {
   id: number;
@@ -35,6 +36,52 @@ interface ModalProps {
 
 const Modal: React.FC<ModalProps> = ({ modalContent, setPopUp, addToCart }) => {
   const [quantity, setQuantity] = useState<number>(1);
+  const [selectedModifier, setSelectedModifier] = useState(null);
+
+  const handleModifierChange = (modifier) => {
+    setSelectedModifier(modifier);
+  };
+
+  console.log("selectedModifier", selectedModifier);
+  const productModifier = {
+    ...modalContent,
+    price: selectedModifier?.price || modalContent.price,
+    modiferName: selectedModifier?.name,
+  };
+
+  console.log("productModifier", productModifier);
+
+  const renderModifiersForm = () => {
+    return (
+      <div className="modal_modifier-interactions">
+        <form className="modal__modifier-form">
+          {modalContent?.modifiers?.[0]?.items?.map(
+            (modifier) => (
+              console.log("naruto", modifier),
+              (
+                <div key={modifier?.id} className="modal__modifier-info">
+                  <div className="modal__modifier-txt-info-product">
+                    <span className="modal__modifier-txt-name">
+                      {modifier?.name}
+                    </span>
+                    <span className="modal__modifier-txt-price">
+                      R${modifier?.price}
+                    </span>
+                  </div>
+                  <input
+                    type="radio"
+                    checked={selectedModifier?.id === modifier.id}
+                    onChange={() => handleModifierChange(modifier)}
+                    value={modifier?.price}
+                  />
+                </div>
+              )
+            )
+          )}
+        </form>
+      </div>
+    );
+  };
 
   return (
     <div className="modal">
@@ -75,23 +122,7 @@ const Modal: React.FC<ModalProps> = ({ modalContent, setPopUp, addToCart }) => {
                   Selecione {modalContent?.modifiers?.[0]?.maxChoices} opção
                 </span>
               </div>
-              <div className="modal_modifier-interactions">
-                <form className="modal__modifier-form">
-                  {modalContent?.modifiers?.[0]?.items?.map((modifier) => (
-                    <div key={modifier?.id} className="modal__modifier-info">
-                      <div className="modal__modifier-txt-info-product">
-                        <span className="modal__modifier-txt-name">
-                          {modifier?.name}
-                        </span>
-                        <span className="modal__modifier-txt-price">
-                          R${modifier?.price}
-                        </span>
-                      </div>
-                      <input type="radio" />
-                    </div>
-                  ))}
-                </form>
-              </div>
+              {renderModifiersForm()}
             </div>
           )}
 
@@ -114,7 +145,7 @@ const Modal: React.FC<ModalProps> = ({ modalContent, setPopUp, addToCart }) => {
             </div>
             <button
               className="modal__actions-add-btn"
-              onClick={() => addToCart(modalContent, quantity)}
+              onClick={() => addToCart(productModifier, quantity)}
             >
               <span className="modal__actions-add-btn-txt">
                 Adicionar ao pedido
@@ -122,7 +153,7 @@ const Modal: React.FC<ModalProps> = ({ modalContent, setPopUp, addToCart }) => {
               <span className="modal__actions-add-btn-txt">•</span>
               <span className="modal__actions-add-btn-txt">
                 {" "}
-                R${modalContent?.price * quantity}
+                {formatCurrency(modalContent?.price * quantity)}
               </span>
             </button>
           </div>
