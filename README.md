@@ -10,7 +10,7 @@ This project was developed using only pure CSS for styling all components, witho
 
 ## Technologies Used
 
-- **React with TypeScript:** Frontend framework for building user interfaces.
+- **React:** Frontend framework for building user interfaces.
 - **Redux/Redux Saga:** State management library for managing application state and fetch the datas.
 - **CSS:** Styling language used to design and style components.
 
