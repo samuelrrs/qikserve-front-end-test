@@ -1,7 +1,12 @@
+import images from "../../assets/icons/index";
 import "./styles.css";
-import images from "../../assets/icons/index.ts";
 
-const SearchInput = () => {
+interface SearchInputProps {
+  value: string;
+  onChange: (value: string) => void;
+}
+
+const SearchInput = ({ value, onChange }: SearchInputProps) => {
   return (
     <div className="search_input">
       <img
@@ -13,6 +18,8 @@ const SearchInput = () => {
         type="text"
         placeholder="Search menu items"
         className="menu__input"
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
       />
     </div>
   );
