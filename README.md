@@ -39,6 +39,4 @@ This project was developed using only pure CSS for styling all components, witho
 
 - Introduce internationalization (i18n) for translating text and handling date formats across different languages and locales.
 
-## Feedback and Support
-
-Thank you!
+# Thank you!
