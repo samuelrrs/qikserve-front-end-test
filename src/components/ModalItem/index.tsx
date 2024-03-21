@@ -156,7 +156,7 @@ const Modal: React.FC<ModalProps> = ({
                 {" "}
                 {formatCurrency(
                   productModifier.price
-                    ? productModifier.price
+                    ? productModifier.price * quantity
                     : modalContent?.price * quantity
                 )}
               </span>
