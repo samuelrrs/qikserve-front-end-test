@@ -17,7 +17,7 @@ const MenuList = ({
   price,
   imgSrc,
   activeSection,
-  modifier = 1,
+  modifier,
   catchItemAtive,
 }: MenuListProps) => {
   return (
