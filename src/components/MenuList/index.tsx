@@ -4,10 +4,11 @@ import "./styles.css";
 interface MenuListProps {
   title: string;
   description: string;
-  price: string;
-  imgSrc: string;
+  price: number;
+  imgSrc?: string;
   activeSection: boolean;
   catchItemAtive: () => void;
+  modifier?: number;
 }
 
 const MenuList = ({
@@ -16,6 +17,7 @@ const MenuList = ({
   price,
   imgSrc,
   activeSection,
+  modifier = 1,
   catchItemAtive,
 }: MenuListProps) => {
   return (
@@ -23,11 +25,14 @@ const MenuList = ({
       <div className="menu_list" onClick={() => catchItemAtive()}>
         <div className="menu_list__itens">
           <div className="menu_list__itens-txts">
-            <span className="menu_list__item-product-name">{title}</span>
+            <div className="menu_list__item-product-txts">
+              <span className="menu_list__item-product-quantity">1</span>
+              <span className="menu_list__item-product-name">{title}</span>
+            </div>
             <span className="menu_list__item-description">{description}</span>
             <span className="menu_list__item-price">
               {" "}
-              {formatCurrency(price)}
+              {formatCurrency(modifier !== undefined ? modifier : price)}
             </span>
           </div>
           {imgSrc && (

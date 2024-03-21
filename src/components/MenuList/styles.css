@@ -37,6 +37,13 @@
     color: #121212;
 }
 
+.menu_list__item-product-txts {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 4px;
+}
+
 .menu_list__item-description {
     font-size: 16px;
     font-weight: 300;
@@ -51,6 +58,19 @@
     font-weight: 500;
     line-height: 18.75px;
     color: #464646;
+}
+
+.menu_list__item-product-quantity {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 500;
+    color: #ffffff;
+    background-color: #4f372f;
+    padding: 1px;
+    border-radius: 6px;
+    width: 18px;
 }
 
 .menu_list__itens-img {

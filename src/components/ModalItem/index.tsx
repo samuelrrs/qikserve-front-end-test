@@ -34,50 +34,48 @@ interface ModalProps {
   removeQuantity: (quantity: number) => void;
 }
 
-const Modal: React.FC<ModalProps> = ({ modalContent, setPopUp, addToCart }) => {
+const Modal: React.FC<ModalProps> = ({
+  modalContent,
+  setPopUp,
+  addToCart,
+  restaurant,
+}) => {
   const [quantity, setQuantity] = useState<number>(1);
-  const [selectedModifier, setSelectedModifier] = useState(null);
+  const defaultModifier = modalContent?.modifiers?.[0]?.items?.[0];
+  const [selectedModifier, setSelectedModifier] = useState(defaultModifier);
 
   const handleModifierChange = (modifier) => {
     setSelectedModifier(modifier);
   };
 
-  console.log("selectedModifier", selectedModifier);
   const productModifier = {
     ...modalContent,
     price: selectedModifier?.price || modalContent.price,
     modiferName: selectedModifier?.name,
   };
 
-  console.log("productModifier", productModifier);
-
   const renderModifiersForm = () => {
     return (
       <div className="modal_modifier-interactions">
         <form className="modal__modifier-form">
-          {modalContent?.modifiers?.[0]?.items?.map(
-            (modifier) => (
-              console.log("naruto", modifier),
-              (
-                <div key={modifier?.id} className="modal__modifier-info">
-                  <div className="modal__modifier-txt-info-product">
-                    <span className="modal__modifier-txt-name">
-                      {modifier?.name}
-                    </span>
-                    <span className="modal__modifier-txt-price">
-                      R${modifier?.price}
-                    </span>
-                  </div>
-                  <input
-                    type="radio"
-                    checked={selectedModifier?.id === modifier.id}
-                    onChange={() => handleModifierChange(modifier)}
-                    value={modifier?.price}
-                  />
-                </div>
-              )
-            )
-          )}
+          {modalContent?.modifiers?.[0]?.items?.map((modifier) => (
+            <div key={modifier?.id} className="modal__modifier-info">
+              <div className="modal__modifier-txt-info-product">
+                <span className="modal__modifier-txt-name">
+                  {modifier?.name}
+                </span>
+                <span className="modal__modifier-txt-price">
+                  R${modifier?.price}
+                </span>
+              </div>
+              <input
+                type="radio"
+                checked={selectedModifier?.id === modifier.id}
+                onChange={() => handleModifierChange(modifier)}
+                value={modifier?.price}
+              />
+            </div>
+          ))}
         </form>
       </div>
     );
@@ -146,6 +144,9 @@ const Modal: React.FC<ModalProps> = ({ modalContent, setPopUp, addToCart }) => {
             <button
               className="modal__actions-add-btn"
               onClick={() => addToCart(productModifier, quantity)}
+              style={{
+                backgroundColor: restaurant.webSettings.primaryColour,
+              }}
             >
               <span className="modal__actions-add-btn-txt">
                 Adicionar ao pedido
@@ -153,7 +154,11 @@ const Modal: React.FC<ModalProps> = ({ modalContent, setPopUp, addToCart }) => {
               <span className="modal__actions-add-btn-txt">•</span>
               <span className="modal__actions-add-btn-txt">
                 {" "}
-                {formatCurrency(modalContent?.price * quantity)}
+                {formatCurrency(
+                  productModifier.price
+                    ? productModifier.price
+                    : modalContent?.price * quantity
+                )}
               </span>
             </button>
           </div>

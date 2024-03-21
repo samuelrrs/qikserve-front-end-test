@@ -14,7 +14,7 @@
 .header__tabs {
     display: flex;
     height: 52px;
-    background-color: #4f372f;
+    /* background-color: #4f372f; */
     width: 100%;
     display: flex;
     align-items: center;

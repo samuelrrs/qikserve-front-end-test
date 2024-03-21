@@ -44,7 +44,6 @@ const BasketResponsive: React.FC<BasketResponsiveProps> = ({
     0
   );
 
-  console.log("totalPrice", totalPrice);
   return (
     <div className="modal">
       <div
@@ -84,11 +83,10 @@ const BasketResponsive: React.FC<BasketResponsiveProps> = ({
             {modalContent.length ? (
               modalContent.map((item) => (
                 <div className="basket__itens-container" key={item.id}>
-                  <div>
+                  <div className="basket-responsive__itens-section">
                     <span className="basket__itens-name">{item.name}</span>
-                    {item.modifiers?.map((modifier, index) => (
-                      <span key={index}>{modifier}</span>
-                    ))}
+
+                    <span>{item?.modiferName}</span>
                     <div className="basket__itens-quantity">
                       <span
                         className="basket__itens-quantity-btn"

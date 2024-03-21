@@ -227,6 +227,11 @@
     font-weight: 400;
 }
 
+.basket-responsive__itens-section {
+    display: flex;
+    flex-direction: column;
+}
+
 .basket-responsive__actions-quantity-decrease {
     width: 32px;
     height: 32px;

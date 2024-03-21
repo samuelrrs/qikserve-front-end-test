@@ -26,8 +26,6 @@ const Basket = ({
     0
   );
 
-  console.log("itensBasket", itensBasket);
-
   return (
     <>
       <div

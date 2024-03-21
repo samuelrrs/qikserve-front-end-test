@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "./styles.css";
 
 interface Section {
@@ -13,14 +14,19 @@ interface Props {
   activeSectionId: number;
 }
 
-const Carousel = ({ sections, handleCollapseMenu, activeSectionId }: Props) => {
+const Carousel = ({ sections, handleCollapseMenu }: Props) => {
+  const firstOption = sections[0]?.id;
+  const [activeMenuId, setActiveMenuId] = useState(firstOption);
+
   return (
     <div className="carousel">
       {sections?.map((item) => (
         <div
           className="carousel__items"
           key={item.id}
-          onClick={() => handleCollapseMenu(item.id)}
+          onClick={() => {
+            handleCollapseMenu(item.id), setActiveMenuId(item.id);
+          }}
         >
           <div className="carousel__container">
             <div className="carousel__img-container">
@@ -33,7 +39,7 @@ const Carousel = ({ sections, handleCollapseMenu, activeSectionId }: Props) => {
           </div>
           <span
             className={
-              activeSectionId
+              item.id === activeMenuId
                 ? "carousel__txt carousel__ative"
                 : "carousel__txt"
             }

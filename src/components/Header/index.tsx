@@ -1,10 +1,19 @@
 import "./styles.css";
 import images from "../../assets/icons/index.ts";
+import { useSelector } from "react-redux";
 
 const Header = () => {
+  const { restaurant } = useSelector((state) => ({
+    restaurant: state?.restaurant?.restaurantData,
+  }));
   return (
     <header className="header">
-      <div className="header__tabs">
+      <div
+        className="header__tabs"
+        style={{
+          backgroundColor: restaurant?.webSettings?.navBackgroundColour,
+        }}
+      >
         <span className="header__txts">
           Menu
           <div className="header__line-active" />
@@ -18,7 +27,7 @@ const Header = () => {
         />
       </div>
       <img
-        src="https://preodemo.gumlet.io/usr/venue/7602/web/646fbf3abf9d0.png"
+        src={restaurant?.webSettings?.bannerImage}
         alt="Banner Image"
         className="header__img"
       />

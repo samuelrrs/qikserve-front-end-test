@@ -14,6 +14,7 @@ import {
   removeQuantity,
 } from "../../store/modules/cart/actions.js";
 import { fetchMenuRequest } from "../../store/modules/menu/actions.js";
+import { fetchRestaurantsRequest } from "../../store/modules/restaurants/actions.js";
 import "./styles.css";
 
 interface MenuItem {
@@ -27,23 +28,23 @@ interface MenuItem {
 
 const Menu = () => {
   /*  const [dataMenu, setDataMenu] = useState<MenuItem | null>(null); */
-  const { sections, loading, cart } = useSelector((state) => ({
+  const { sections, loading, cart, restaurant } = useSelector((state) => ({
     sections: state.menu?.menuData?.sections || [],
     loading: state.menu.loading,
     cart: state?.cart?.items,
+    restaurant: state?.restaurant?.restaurantData,
   }));
   const [popUp, setPopUp] = useState(false);
   const [showBasket, setShowBasket] = useState(false);
   const [selectedItem, setSelectedItem] = useState<MenuItem | null>(null);
   const [activeSectionId, setActiveSectionId] = useState(null);
   const [searchText, setSearchText] = useState("");
-  const [catchActiveSection, setCatchActiveSection] = useState(0);
-  console.log("catchActiveSection", catchActiveSection);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchMenuRequest());
+    dispatch(fetchRestaurantsRequest());
   }, [dispatch]);
 
   useEffect(() => {
@@ -106,7 +107,6 @@ const Menu = () => {
               sections={sections}
               handleCollapseMenu={handleCollapseMenu}
               activeSectionId={activeSectionId}
-              setCatchActiveSection={setCatchActiveSection}
             />
             {filteredNames &&
               filteredNames.map((section) => (
@@ -147,6 +147,7 @@ const Menu = () => {
                         addToCart={handleAddToCart}
                         handleAddQuantity={handleAddQuantity}
                         handleRemoveQuantity={handleRemoveQuantity}
+                        restaurant={restaurant}
                       />
                     </>
                   )}
@@ -159,6 +160,7 @@ const Menu = () => {
                       imgSrc={item?.images?.[0]?.image}
                       activeSection={activeSectionId?.includes(section.id)}
                       catchItemAtive={() => handleSelectItem(item)}
+                      modifier={item?.modifiers?.[0]?.items?.[0]?.price}
                     />
                   ))}
                 </div>
