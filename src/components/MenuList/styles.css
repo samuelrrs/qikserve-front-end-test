@@ -37,6 +37,13 @@
     color: #121212;
 }
 
+.menu_list__item-product-txts {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 4px;
+}
+
 .menu_list__item-description {
     font-size: 16px;
     font-weight: 300;
@@ -53,9 +60,33 @@
     color: #464646;
 }
 
+.menu_list__item-product-quantity {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 500;
+    color: #ffffff;
+    background-color: #4f372f;
+    padding: 1px;
+    border-radius: 6px;
+    width: 18px;
+}
+
 .menu_list__itens-img {
     width: 128px;
     height: 85px;
     border-radius: 6px;
     cursor: pointer;
+}
+
+@media (max-width: 700px) {
+    .menu_list__section-label {
+        padding: 0px;
+        margin: 25px 0px 16px 0px;
+    }
+    .menu_list__itens {
+        padding: 0px;
+        margin-bottom: 20px;
+    }
 }

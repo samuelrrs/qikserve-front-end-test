@@ -1,30 +1,42 @@
-# React + TypeScript + Vite
+# QikServe Frontend Test
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Introduction
 
-Currently, two official plugins are available:
+Before you begin, it's important to note that during development, the endpoints occasionally encountered a server-side error related to CORS. To test the project, you can add `access-control-allow-origin *` to the request headers or use a browser extension like [CORS Unblock](https://chromewebstore.google.com/detail/cors-unblock/lfhmikememgdcahcdlaciloancbhjino).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Project Overview
 
-## Expanding the ESLint configuration
+This project was developed using only pure CSS for styling all components, without the aid of any external libraries. The entire project is responsive and supports both web and mobile screen sizes.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Technologies Used
 
-- Configure the top-level `parserOptions` property like this:
+- **React:** Frontend framework for building user interfaces.
+- **Redux/Redux Saga:** State management library for managing application state and fetch the datas.
+- **CSS:** Styling language used to design and style components.
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+## Installation Instructions
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+1. Clone the repository to your local machine.
+2. Navigate to the project directory.
+3. Install dependencies using `npm install` or `yarn install`.
+4. Start the development server with `npm run dev` or `yarn start`.
+
+## Development Notes
+
+- The project is designed to handle responsive layouts for various screen sizes.
+- Redux is used for state management, particularly for managing the shopping cart and product data.
+- API endpoints are expected to return JSON data following a specific schema.
+- Custom CSS classes and styles are used for component styling without external libraries.
+- Error handling and data validation are implemented where necessary.
+
+## Future Improvements
+
+### Unit Testing
+
+- Implement unit tests for critical components and functionality using testing libraries like Jest and React Testing Library.
+
+### Internationalization
+
+- Introduce internationalization (i18n) for translating text and handling date formats across different languages and locales.
+
+# Thank you!
